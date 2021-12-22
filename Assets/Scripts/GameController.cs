@@ -57,7 +57,8 @@ public class GameController : MonoBehaviour
 
         //다음 아이템을 생성할 위치와 회전 값을 알아낸다.
         var nextTile = newTile.Find("Next Spawn Point");
-        nextTileLocation = nextTile.position;
+        Vector3 offset = new Vector3(0, 0, 5);
+        nextTileLocation = nextTile.position + offset;
         nextTileRotation = nextTile.rotation;
     }
 }

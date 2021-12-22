@@ -14,10 +14,10 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody rb;
 
     [Tooltip("how to move fast left/right that ball")]
-    public float dodgeSpeed = 5;
+    public float dodgeSpeed = 5f;
 
     [Tooltip("how to move fast automatically that ball")]
-    public float rollSpeed = 5;
+    public float rollSpeed = 5f;
 
     // Start is call before the first frame update
     void Start()
@@ -25,6 +25,9 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    void Update()
+    {
+    }
     /// <summary>
     /// FixedUpdate
     /// It is good to put time-based functions.
@@ -32,6 +35,9 @@ public class PlayerBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         var horizontalSpeed = Input.GetAxis("Horizontal") * dodgeSpeed;
-        rb.AddForce(horizontalSpeed, 0, rollSpeed);
+        var verticalSpeed = Input.GetAxis("Vertical") * rollSpeed;
+        //rb.AddForce(horizontalSpeed, 0, rollSpeed);
+        Vector3 getVel = new Vector3(horizontalSpeed, 0, verticalSpeed);
+        rb.velocity = getVel;
     }
 }
