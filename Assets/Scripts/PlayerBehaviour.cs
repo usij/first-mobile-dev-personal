@@ -36,8 +36,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         var horizontalSpeed = Input.GetAxis("Horizontal") * dodgeSpeed;
         var verticalSpeed = Input.GetAxis("Vertical") * rollSpeed;
-        //rb.AddForce(horizontalSpeed, 0, rollSpeed);
-        Vector3 getVel = new Vector3(horizontalSpeed, 0, verticalSpeed);
-        rb.velocity = getVel;
+        rb.AddForce(horizontalSpeed, 0, rollSpeed);
+        //Vector3 getVel = new Vector3(horizontalSpeed, 0, verticalSpeed);
+        //rb.velocity = getVel;
     }
 }
