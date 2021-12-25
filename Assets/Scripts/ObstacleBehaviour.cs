@@ -7,6 +7,8 @@ public class ObstacleBehaviour : MonoBehaviour
 {
     [Tooltip("게임 재시작 전 대기 시간")]
     public float waitTime = 2.0f;
+    [Tooltip("파티클 프리팹")]
+    public GameObject explosion;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,5 +28,17 @@ public class ObstacleBehaviour : MonoBehaviour
     {
         // 현재 레벨을 재시작
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    /// <summary>
+    /// 오브젝트가 탭됐으면 폭발을 생성하고 이 오브젝트를 제거한다.
+    /// </summary>
+    private void PlayerTouch()
+    {
+        if(explosion != null)
+        {
+            var particles = Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(particles, 1.0f);
+        }
+        Destroy(this.gameObject);
     }
 }
