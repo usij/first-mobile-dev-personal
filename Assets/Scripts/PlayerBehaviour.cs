@@ -84,10 +84,12 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Touch touch = Input.touches[0];
             SwipeTeleport(touch);
-            TouchObjects(touch);
+            TouchObjects(touch.position);
             ScalePlayer();
         }
+
 #endif
+
     }
     /// <summary>
     /// FixedUpdate
@@ -213,10 +215,10 @@ public class PlayerBehaviour : MonoBehaviour
     /// 게임 오브젝트를 터치했는지 판단하고, 그렇다면 이벤트를 호출한다.
     /// </summary>
     /// <param name="touch"></param>
-    private static void TouchObjects(Touch touch)
+    private static void TouchObjects(/*Touch touch*/Vector2 pos)
     {
         // 위치를 광선(ray)로 변환
-        Ray touchRay = Camera.main.ScreenPointToRay(touch.position);
+        Ray touchRay = Camera.main.ScreenPointToRay(pos);
         RaycastHit hit;
 
         // 가능한 모든 채널과 충돌할 LayerMask 생성
